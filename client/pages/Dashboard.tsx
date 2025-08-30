@@ -4,12 +4,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { 
-  Brain, 
-  Upload, 
-  HelpCircle, 
-  BookOpen, 
-  Users, 
+import { useAuth } from "@/lib/auth-context";
+import {
+  Brain,
+  Upload,
+  HelpCircle,
+  BookOpen,
+  Users,
   Sparkles,
   Search,
   Bell,
@@ -24,7 +25,8 @@ import {
   ArrowRight,
   Play,
   CheckCircle2,
-  Star
+  Star,
+  LogOut
 } from "lucide-react";
 
 export default function Dashboard() {
