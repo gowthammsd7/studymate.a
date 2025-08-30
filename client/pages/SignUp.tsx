@@ -28,6 +28,7 @@ export default function SignUp() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const form = useForm<SignUpFormData>({
     resolver: zodResolver(signUpSchema),
