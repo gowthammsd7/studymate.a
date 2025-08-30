@@ -22,7 +22,10 @@ export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const location = useLocation();
   const { login, isLoading } = useAuth();
+
+  const from = location.state?.from?.pathname || "/dashboard";
 
   const form = useForm<SignInFormData>({
     resolver: zodResolver(signInSchema),
