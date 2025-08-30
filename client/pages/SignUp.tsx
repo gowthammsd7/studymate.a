@@ -45,14 +45,14 @@ export default function SignUp() {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       toast({
         title: "Account created successfully!",
-        description: "Welcome to StudyAI. You can now sign in to your account.",
+        description: "Welcome to StudyAI! Redirecting to your dashboard...",
       });
-      
-      // In a real app, you would redirect to sign in or dashboard
-      console.log("Sign up data:", data);
+
+      // Redirect to dashboard after successful sign up
+      setTimeout(() => navigate("/dashboard"), 1000);
     } catch (error) {
       toast({
         title: "Something went wrong",
