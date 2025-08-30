@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 
 export default function Dashboard() {
+  const { user, logout } = useAuth();
   const quickActions = [
     {
       icon: Brain,
