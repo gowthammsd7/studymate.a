@@ -171,7 +171,7 @@ export default function Dashboard() {
         {/* Welcome Section */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Welcome back, John! 👋
+            Welcome back, {user?.name || "Student"}! 👋
           </h1>
           <p className="text-gray-600">
             Ready to continue your learning journey? You're doing great!
