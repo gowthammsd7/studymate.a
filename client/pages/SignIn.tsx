@@ -33,10 +33,8 @@ export default function SignIn() {
   });
 
   const onSubmit = async (data: SignInFormData) => {
-    setIsLoading(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await login(data.email, data.password);
 
       toast({
         title: "Welcome back!",
@@ -51,8 +49,6 @@ export default function SignIn() {
         description: "Please check your credentials and try again.",
         variant: "destructive",
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
