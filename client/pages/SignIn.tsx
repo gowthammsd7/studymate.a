@@ -44,8 +44,8 @@ export default function SignIn() {
         description: "You have successfully signed in to StudyAI.",
       });
 
-      // Redirect to dashboard after successful sign in
-      navigate("/dashboard");
+      // Redirect to intended destination or dashboard
+      navigate(from, { replace: true });
     } catch (error) {
       toast({
         title: "Sign in failed",
