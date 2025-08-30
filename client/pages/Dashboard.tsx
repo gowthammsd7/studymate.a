@@ -147,10 +147,18 @@ export default function Dashboard() {
               <Button variant="ghost" size="icon">
                 <Settings className="h-5 w-5" />
               </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={logout}
+                title="Sign out"
+              >
+                <LogOut className="h-5 w-5" />
+              </Button>
               <Avatar>
-                <AvatarImage src="/placeholder.svg" />
+                <AvatarImage src={user?.avatar} />
                 <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white">
-                  JD
+                  {user?.name?.charAt(0).toUpperCase() || "U"}
                 </AvatarFallback>
               </Avatar>
             </div>
