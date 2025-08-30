@@ -42,10 +42,8 @@ export default function SignUp() {
   });
 
   const onSubmit = async (data: SignUpFormData) => {
-    setIsLoading(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await signup(data.name, data.email, data.password);
 
       toast({
         title: "Account created successfully!",
@@ -60,8 +58,6 @@ export default function SignUp() {
         description: "Please try again later.",
         variant: "destructive",
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
