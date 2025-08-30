@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Brain, 
-  Upload, 
-  HelpCircle, 
-  BookOpen, 
-  BarChart3, 
-  Users, 
-  Sparkles, 
+import { useAuth } from "@/lib/auth-context";
+import {
+  Brain,
+  Upload,
+  HelpCircle,
+  BookOpen,
+  BarChart3,
+  Users,
+  Sparkles,
   ArrowRight,
   CheckCircle,
   Star
