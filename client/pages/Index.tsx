@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 
 export default function Index() {
+  const { isAuthenticated, user } = useAuth();
   const features = [
     {
       icon: Brain,
