@@ -1,22 +1,28 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/lib/auth-context";
 import { useState } from "react";
-import { 
-  ArrowLeft, 
-  Brain, 
-  Target, 
-  Calendar, 
-  BookOpen, 
-  TrendingUp, 
-  Clock, 
-  Star, 
-  CheckCircle2, 
+import {
+  ArrowLeft,
+  Brain,
+  Target,
+  Calendar,
+  BookOpen,
+  TrendingUp,
+  Clock,
+  Star,
+  CheckCircle2,
   AlertTriangle,
   Lightbulb,
   BarChart3,
@@ -27,7 +33,7 @@ import {
   Zap,
   Award,
   Users,
-  FileText
+  FileText,
 } from "lucide-react";
 
 export default function AIAdvisor() {
@@ -40,29 +46,29 @@ export default function AIAdvisor() {
       weakAreas: ["Derivatives", "Integration"],
       strongAreas: ["Algebra", "Trigonometry"],
       recommendedTime: "2.5 hours/week",
-      nextGoal: "Master Calculus Chapter 5"
+      nextGoal: "Master Calculus Chapter 5",
     },
     physics: {
       progress: 72,
       weakAreas: ["Quantum Mechanics", "Thermodynamics"],
       strongAreas: ["Mechanics", "Optics"],
-      recommendedTime: "3 hours/week", 
-      nextGoal: "Complete Physics Lab Reports"
+      recommendedTime: "3 hours/week",
+      nextGoal: "Complete Physics Lab Reports",
     },
     chemistry: {
       progress: 68,
       weakAreas: ["Organic Chemistry", "Bonding"],
       strongAreas: ["Periodic Table", "Reactions"],
       recommendedTime: "2 hours/week",
-      nextGoal: "Memorize Organic Compounds"
+      nextGoal: "Memorize Organic Compounds",
     },
     history: {
       progress: 91,
       weakAreas: ["World War Era"],
       strongAreas: ["Ancient Civilizations", "Modern History"],
       recommendedTime: "1.5 hours/week",
-      nextGoal: "Finish History Essay"
-    }
+      nextGoal: "Finish History Essay",
+    },
   };
 
   const personalizedRecommendations = [
@@ -70,29 +76,32 @@ export default function AIAdvisor() {
       priority: "high",
       subject: "Mathematics",
       title: "Focus on Derivatives Practice",
-      description: "Your recent test shows weakness in derivative applications. I recommend 30 minutes daily practice.",
+      description:
+        "Your recent test shows weakness in derivative applications. I recommend 30 minutes daily practice.",
       action: "Start Practice",
       icon: Target,
-      timeEstimate: "30 min/day"
+      timeEstimate: "30 min/day",
     },
     {
       priority: "medium",
       subject: "Physics",
       title: "Review Thermodynamics Concepts",
-      description: "Based on your study pattern, thermodynamics needs reinforcement before the upcoming exam.",
+      description:
+        "Based on your study pattern, thermodynamics needs reinforcement before the upcoming exam.",
       action: "Review Notes",
       icon: BookOpen,
-      timeEstimate: "45 min"
+      timeEstimate: "45 min",
     },
     {
       priority: "low",
       subject: "Chemistry",
       title: "Organic Chemistry Flashcards",
-      description: "Create flashcards for organic compound names to improve retention.",
+      description:
+        "Create flashcards for organic compound names to improve retention.",
       action: "Create Cards",
       icon: FileText,
-      timeEstimate: "20 min"
-    }
+      timeEstimate: "20 min",
+    },
   ];
 
   const studyInsights = [
@@ -100,33 +109,53 @@ export default function AIAdvisor() {
       icon: TrendingUp,
       title: "Peak Performance Time",
       value: "2:00 PM - 4:00 PM",
-      description: "Your best study hours based on completion rates"
+      description: "Your best study hours based on completion rates",
     },
     {
       icon: Clock,
       title: "Optimal Session Length",
       value: "45 minutes",
-      description: "Sessions longer than this show decreased retention"
+      description: "Sessions longer than this show decreased retention",
     },
     {
       icon: Star,
       title: "Learning Style",
       value: "Visual + Practice",
-      description: "You learn best with diagrams and hands-on practice"
+      description: "You learn best with diagrams and hands-on practice",
     },
     {
       icon: Target,
       title: "Success Prediction",
       value: "89% likely",
-      description: "To achieve your semester goals at current pace"
-    }
+      description: "To achieve your semester goals at current pace",
+    },
   ];
 
   const weeklyGoals = [
-    { task: "Complete 5 calculus practice problems daily", completed: 4, total: 7, subject: "Math" },
-    { task: "Review physics lab procedures", completed: 2, total: 3, subject: "Physics" },
-    { task: "Memorize 20 chemistry formulas", completed: 15, total: 20, subject: "Chemistry" },
-    { task: "Read 2 history chapters", completed: 2, total: 2, subject: "History" }
+    {
+      task: "Complete 5 calculus practice problems daily",
+      completed: 4,
+      total: 7,
+      subject: "Math",
+    },
+    {
+      task: "Review physics lab procedures",
+      completed: 2,
+      total: 3,
+      subject: "Physics",
+    },
+    {
+      task: "Memorize 20 chemistry formulas",
+      completed: 15,
+      total: 20,
+      subject: "Chemistry",
+    },
+    {
+      task: "Read 2 history chapters",
+      completed: 2,
+      total: 2,
+      subject: "History",
+    },
   ];
 
   const aiSuggestions = [
@@ -134,7 +163,7 @@ export default function AIAdvisor() {
     "Review mathematics concepts before 3 PM for better retention",
     "Use the Pomodoro Technique for chemistry memorization",
     "Create mind maps for physics problem-solving",
-    "Practice explaining concepts out loud to improve understanding"
+    "Practice explaining concepts out loud to improve understanding",
   ];
 
   return (
@@ -190,8 +219,12 @@ export default function AIAdvisor() {
               <Brain className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">AI Study Advisor</h1>
-              <p className="text-gray-600">Personalized recommendations powered by AI</p>
+              <h1 className="text-3xl font-bold text-gray-900">
+                AI Study Advisor
+              </h1>
+              <p className="text-gray-600">
+                Personalized recommendations powered by AI
+              </p>
             </div>
           </div>
         </div>
@@ -213,31 +246,58 @@ export default function AIAdvisor() {
                   <Zap className="w-5 h-5 mr-2 text-yellow-500" />
                   Priority Recommendations
                 </CardTitle>
-                <CardDescription>AI-powered suggestions based on your study patterns</CardDescription>
+                <CardDescription>
+                  AI-powered suggestions based on your study patterns
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {personalizedRecommendations.map((rec, index) => (
-                    <div key={index} className="p-4 rounded-lg border border-gray-200 hover:bg-white/50 transition-colors">
+                    <div
+                      key={index}
+                      className="p-4 rounded-lg border border-gray-200 hover:bg-white/50 transition-colors"
+                    >
                       <div className="flex items-start justify-between">
                         <div className="flex items-start space-x-4">
-                          <div className={`p-2 rounded-lg ${
-                            rec.priority === 'high' ? 'bg-red-100' : 
-                            rec.priority === 'medium' ? 'bg-yellow-100' : 'bg-green-100'
-                          }`}>
-                            <rec.icon className={`w-5 h-5 ${
-                              rec.priority === 'high' ? 'text-red-500' : 
-                              rec.priority === 'medium' ? 'text-yellow-500' : 'text-green-500'
-                            }`} />
+                          <div
+                            className={`p-2 rounded-lg ${
+                              rec.priority === "high"
+                                ? "bg-red-100"
+                                : rec.priority === "medium"
+                                  ? "bg-yellow-100"
+                                  : "bg-green-100"
+                            }`}
+                          >
+                            <rec.icon
+                              className={`w-5 h-5 ${
+                                rec.priority === "high"
+                                  ? "text-red-500"
+                                  : rec.priority === "medium"
+                                    ? "text-yellow-500"
+                                    : "text-green-500"
+                              }`}
+                            />
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center space-x-2 mb-1">
-                              <h3 className="font-semibold text-gray-900">{rec.title}</h3>
-                              <Badge variant={rec.priority === 'high' ? 'destructive' : rec.priority === 'medium' ? 'default' : 'secondary'}>
+                              <h3 className="font-semibold text-gray-900">
+                                {rec.title}
+                              </h3>
+                              <Badge
+                                variant={
+                                  rec.priority === "high"
+                                    ? "destructive"
+                                    : rec.priority === "medium"
+                                      ? "default"
+                                      : "secondary"
+                                }
+                              >
                                 {rec.priority}
                               </Badge>
                             </div>
-                            <p className="text-sm text-gray-600 mb-2">{rec.description}</p>
+                            <p className="text-sm text-gray-600 mb-2">
+                              {rec.description}
+                            </p>
                             <div className="flex items-center space-x-4 text-xs text-gray-500">
                               <span>📚 {rec.subject}</span>
                               <span>⏱️ {rec.timeEstimate}</span>
@@ -291,8 +351,12 @@ export default function AIAdvisor() {
                     {Object.entries(studyData).map(([subject, data]) => (
                       <div key={subject} className="space-y-2">
                         <div className="flex justify-between items-center">
-                          <span className="capitalize font-medium">{subject}</span>
-                          <span className="text-sm text-gray-600">{data.progress}%</span>
+                          <span className="capitalize font-medium">
+                            {subject}
+                          </span>
+                          <span className="text-sm text-gray-600">
+                            {data.progress}%
+                          </span>
                         </div>
                         <Progress value={data.progress} className="h-2" />
                         <div className="flex justify-between text-xs text-gray-500">
@@ -322,10 +386,16 @@ export default function AIAdvisor() {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between">
-                            <h4 className="font-medium text-gray-900">{insight.title}</h4>
-                            <span className="text-sm font-semibold text-blue-600">{insight.value}</span>
+                            <h4 className="font-medium text-gray-900">
+                              {insight.title}
+                            </h4>
+                            <span className="text-sm font-semibold text-blue-600">
+                              {insight.value}
+                            </span>
                           </div>
-                          <p className="text-xs text-gray-600 mt-1">{insight.description}</p>
+                          <p className="text-xs text-gray-600 mt-1">
+                            {insight.description}
+                          </p>
                         </div>
                       </div>
                     ))}
@@ -343,20 +413,36 @@ export default function AIAdvisor() {
                   <Target className="w-5 h-5 mr-2 text-green-500" />
                   Weekly Goals Progress
                 </CardTitle>
-                <CardDescription>Track your progress towards weekly study objectives</CardDescription>
+                <CardDescription>
+                  Track your progress towards weekly study objectives
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {weeklyGoals.map((goal, index) => (
-                    <div key={index} className="p-4 rounded-lg border border-gray-200">
+                    <div
+                      key={index}
+                      className="p-4 rounded-lg border border-gray-200"
+                    >
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-medium text-gray-900">{goal.task}</h4>
-                        <Badge variant={goal.completed === goal.total ? "default" : "secondary"}>
+                        <h4 className="font-medium text-gray-900">
+                          {goal.task}
+                        </h4>
+                        <Badge
+                          variant={
+                            goal.completed === goal.total
+                              ? "default"
+                              : "secondary"
+                          }
+                        >
                           {goal.subject}
                         </Badge>
                       </div>
                       <div className="flex items-center space-x-4">
-                        <Progress value={(goal.completed / goal.total) * 100} className="flex-1 h-2" />
+                        <Progress
+                          value={(goal.completed / goal.total) * 100}
+                          className="flex-1 h-2"
+                        />
                         <span className="text-sm text-gray-600">
                           {goal.completed}/{goal.total}
                         </span>
@@ -380,7 +466,9 @@ export default function AIAdvisor() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-green-500 mb-2">87%</div>
+                    <div className="text-3xl font-bold text-green-500 mb-2">
+                      87%
+                    </div>
                     <p className="text-sm text-gray-600">Higher than average</p>
                     <Progress value={87} className="mt-4 h-2" />
                   </div>
@@ -393,8 +481,12 @@ export default function AIAdvisor() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-blue-500 mb-2">92%</div>
-                    <p className="text-sm text-gray-600">Excellent concentration</p>
+                    <div className="text-3xl font-bold text-blue-500 mb-2">
+                      92%
+                    </div>
+                    <p className="text-sm text-gray-600">
+                      Excellent concentration
+                    </p>
                     <Progress value={92} className="mt-4 h-2" />
                   </div>
                 </CardContent>
@@ -406,8 +498,12 @@ export default function AIAdvisor() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-purple-500 mb-2">84%</div>
-                    <p className="text-sm text-gray-600">Good long-term memory</p>
+                    <div className="text-3xl font-bold text-purple-500 mb-2">
+                      84%
+                    </div>
+                    <p className="text-sm text-gray-600">
+                      Good long-term memory
+                    </p>
                     <Progress value={84} className="mt-4 h-2" />
                   </div>
                 </CardContent>
@@ -428,8 +524,13 @@ export default function AIAdvisor() {
                     <div className="flex items-start space-x-3">
                       <AlertTriangle className="w-5 h-5 text-yellow-500 mt-1" />
                       <div>
-                        <h4 className="font-medium text-gray-900 mb-1">Consistency Challenge</h4>
-                        <p className="text-sm text-gray-600">Your study sessions vary greatly in length. Try maintaining 45-minute focused sessions.</p>
+                        <h4 className="font-medium text-gray-900 mb-1">
+                          Consistency Challenge
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          Your study sessions vary greatly in length. Try
+                          maintaining 45-minute focused sessions.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -437,8 +538,13 @@ export default function AIAdvisor() {
                     <div className="flex items-start space-x-3">
                       <Users className="w-5 h-5 text-blue-500 mt-1" />
                       <div>
-                        <h4 className="font-medium text-gray-900 mb-1">Collaboration Boost</h4>
-                        <p className="text-sm text-gray-600">Consider joining study groups for chemistry - peer learning could improve retention by 23%.</p>
+                        <h4 className="font-medium text-gray-900 mb-1">
+                          Collaboration Boost
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          Consider joining study groups for chemistry - peer
+                          learning could improve retention by 23%.
+                        </p>
                       </div>
                     </div>
                   </div>

@@ -53,16 +53,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setIsLoading(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       // Create mock user data
       const userData: User = {
         id: "1",
         name: email.split("@")[0], // Use email prefix as name
         email: email,
-        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`
+        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
       };
-      
+
       setUser(userData);
       localStorage.setItem("studyai_user", JSON.stringify(userData));
     } catch (error) {
@@ -76,16 +76,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setIsLoading(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       // Create mock user data
       const userData: User = {
         id: "1",
         name: name,
         email: email,
-        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`
+        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
       };
-      
+
       setUser(userData);
       localStorage.setItem("studyai_user", JSON.stringify(userData));
     } catch (error) {
@@ -109,9 +109,5 @@ export function AuthProvider({ children }: AuthProviderProps) {
     logout,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

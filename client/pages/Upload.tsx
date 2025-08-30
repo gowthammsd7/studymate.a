@@ -1,24 +1,36 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/lib/auth-context";
 import { useState, useCallback } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { 
-  ArrowLeft, 
-  Upload as UploadIcon, 
-  FileText, 
-  Image, 
-  File, 
-  CheckCircle2, 
-  Clock, 
+import {
+  ArrowLeft,
+  Upload as UploadIcon,
+  FileText,
+  Image,
+  File,
+  CheckCircle2,
+  Clock,
   X,
   Brain,
   Sparkles,
@@ -33,7 +45,7 @@ import {
   Plus,
   FolderOpen,
   Tag,
-  Calendar
+  Calendar,
 } from "lucide-react";
 
 interface UploadedFile {
@@ -42,14 +54,14 @@ interface UploadedFile {
   type: string;
   size: number;
   subject: string;
-  status: 'uploading' | 'processing' | 'completed' | 'failed';
+  status: "uploading" | "processing" | "completed" | "failed";
   progress: number;
   uploadDate: Date;
   tags: string[];
   aiAnalysis?: {
     summary: string;
     keyTopics: string[];
-    difficulty: 'beginner' | 'intermediate' | 'advanced';
+    difficulty: "beginner" | "intermediate" | "advanced";
     estimatedStudyTime: string;
   };
 }
@@ -60,53 +72,60 @@ export default function Upload() {
   const [dragActive, setDragActive] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([
     {
-      id: '1',
-      name: 'Calculus_Chapter_5_Notes.pdf',
-      type: 'application/pdf',
+      id: "1",
+      name: "Calculus_Chapter_5_Notes.pdf",
+      type: "application/pdf",
       size: 2456789,
-      subject: 'Mathematics',
-      status: 'completed',
+      subject: "Mathematics",
+      status: "completed",
       progress: 100,
-      uploadDate: new Date('2024-01-15'),
-      tags: ['derivatives', 'calculus', 'math'],
+      uploadDate: new Date("2024-01-15"),
+      tags: ["derivatives", "calculus", "math"],
       aiAnalysis: {
-        summary: 'Comprehensive notes on derivatives including chain rule and applications.',
-        keyTopics: ['Chain Rule', 'Product Rule', 'Quotient Rule', 'Applications'],
-        difficulty: 'intermediate',
-        estimatedStudyTime: '2-3 hours'
-      }
+        summary:
+          "Comprehensive notes on derivatives including chain rule and applications.",
+        keyTopics: [
+          "Chain Rule",
+          "Product Rule",
+          "Quotient Rule",
+          "Applications",
+        ],
+        difficulty: "intermediate",
+        estimatedStudyTime: "2-3 hours",
+      },
     },
     {
-      id: '2',
-      name: 'Physics_Lab_Report_3.docx',
-      type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      id: "2",
+      name: "Physics_Lab_Report_3.docx",
+      type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       size: 1234567,
-      subject: 'Physics',
-      status: 'processing',
+      subject: "Physics",
+      status: "processing",
       progress: 65,
-      uploadDate: new Date('2024-01-16'),
-      tags: ['lab', 'thermodynamics', 'physics']
+      uploadDate: new Date("2024-01-16"),
+      tags: ["lab", "thermodynamics", "physics"],
     },
     {
-      id: '3',
-      name: 'Chemistry_Formulas.jpg',
-      type: 'image/jpeg',
+      id: "3",
+      name: "Chemistry_Formulas.jpg",
+      type: "image/jpeg",
       size: 876543,
-      subject: 'Chemistry',
-      status: 'completed',
+      subject: "Chemistry",
+      status: "completed",
       progress: 100,
-      uploadDate: new Date('2024-01-14'),
-      tags: ['formulas', 'organic', 'chemistry'],
+      uploadDate: new Date("2024-01-14"),
+      tags: ["formulas", "organic", "chemistry"],
       aiAnalysis: {
-        summary: 'Collection of organic chemistry formulas and molecular structures.',
-        keyTopics: ['Molecular Structure', 'Bonding', 'Functional Groups'],
-        difficulty: 'beginner',
-        estimatedStudyTime: '1-2 hours'
-      }
-    }
+        summary:
+          "Collection of organic chemistry formulas and molecular structures.",
+        keyTopics: ["Molecular Structure", "Bonding", "Functional Groups"],
+        difficulty: "beginner",
+        estimatedStudyTime: "1-2 hours",
+      },
+    },
   ]);
-  const [selectedSubject, setSelectedSubject] = useState<string>('');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -122,7 +141,7 @@ export default function Upload() {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-    
+
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       handleFiles(e.dataTransfer.files);
     }
@@ -142,14 +161,14 @@ export default function Upload() {
         name: file.name,
         type: file.type,
         size: file.size,
-        subject: selectedSubject || 'General',
-        status: 'uploading',
+        subject: selectedSubject || "General",
+        status: "uploading",
         progress: 0,
         uploadDate: new Date(),
-        tags: []
+        tags: [],
       };
 
-      setUploadedFiles(prev => [...prev, newFile]);
+      setUploadedFiles((prev) => [...prev, newFile]);
 
       // Simulate upload progress
       simulateUpload(newFile.id);
@@ -168,45 +187,52 @@ export default function Upload() {
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        setUploadedFiles(prev => prev.map(file => 
-          file.id === fileId 
-            ? { ...file, status: 'processing', progress: 100 }
-            : file
-        ));
-        
+        setUploadedFiles((prev) =>
+          prev.map((file) =>
+            file.id === fileId
+              ? { ...file, status: "processing", progress: 100 }
+              : file,
+          ),
+        );
+
         // Simulate AI processing
         setTimeout(() => {
-          setUploadedFiles(prev => prev.map(file => 
-            file.id === fileId 
-              ? { 
-                  ...file, 
-                  status: 'completed',
-                  aiAnalysis: {
-                    summary: 'AI analysis completed. This document contains important study material.',
-                    keyTopics: ['Key Topic 1', 'Key Topic 2', 'Key Topic 3'],
-                    difficulty: 'intermediate',
-                    estimatedStudyTime: '1-2 hours'
-                  },
-                  tags: ['ai-generated', 'study-material']
-                }
-              : file
-          ));
-          
+          setUploadedFiles((prev) =>
+            prev.map((file) =>
+              file.id === fileId
+                ? {
+                    ...file,
+                    status: "completed",
+                    aiAnalysis: {
+                      summary:
+                        "AI analysis completed. This document contains important study material.",
+                      keyTopics: ["Key Topic 1", "Key Topic 2", "Key Topic 3"],
+                      difficulty: "intermediate",
+                      estimatedStudyTime: "1-2 hours",
+                    },
+                    tags: ["ai-generated", "study-material"],
+                  }
+                : file,
+            ),
+          );
+
           toast({
             title: "AI Analysis Complete",
             description: "Your file has been processed and analyzed by AI.",
           });
         }, 3000);
       } else {
-        setUploadedFiles(prev => prev.map(file => 
-          file.id === fileId ? { ...file, progress } : file
-        ));
+        setUploadedFiles((prev) =>
+          prev.map((file) =>
+            file.id === fileId ? { ...file, progress } : file,
+          ),
+        );
       }
     }, 500);
   };
 
   const deleteFile = (fileId: string) => {
-    setUploadedFiles(prev => prev.filter(file => file.id !== fileId));
+    setUploadedFiles((prev) => prev.filter((file) => file.id !== fileId));
     toast({
       title: "File deleted",
       description: "File has been removed from your uploads.",
@@ -214,27 +240,38 @@ export default function Upload() {
   };
 
   const formatFileSize = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes';
+    if (bytes === 0) return "0 Bytes";
     const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const sizes = ["Bytes", "KB", "MB", "GB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
   const getFileIcon = (type: string) => {
-    if (type.includes('image')) return Image;
-    if (type.includes('pdf') || type.includes('document')) return FileText;
+    if (type.includes("image")) return Image;
+    if (type.includes("pdf") || type.includes("document")) return FileText;
     return File;
   };
 
-  const filteredFiles = uploadedFiles.filter(file => {
-    const matchesSearch = file.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         file.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesSubject = selectedSubject === '' || file.subject === selectedSubject;
+  const filteredFiles = uploadedFiles.filter((file) => {
+    const matchesSearch =
+      file.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      file.tags.some((tag) =>
+        tag.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
+    const matchesSubject =
+      selectedSubject === "" || file.subject === selectedSubject;
     return matchesSearch && matchesSubject;
   });
 
-  const subjects = ['Mathematics', 'Physics', 'Chemistry', 'History', 'English', 'Biology'];
+  const subjects = [
+    "Mathematics",
+    "Physics",
+    "Chemistry",
+    "History",
+    "English",
+    "Biology",
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
@@ -289,8 +326,12 @@ export default function Upload() {
               <UploadIcon className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Upload Materials</h1>
-              <p className="text-gray-600">Upload and organize your study materials with AI analysis</p>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Upload Materials
+              </h1>
+              <p className="text-gray-600">
+                Upload and organize your study materials with AI analysis
+              </p>
             </div>
           </div>
         </div>
@@ -310,7 +351,9 @@ export default function Upload() {
                   <Plus className="w-5 h-5 mr-2 text-green-500" />
                   Upload New Materials
                 </CardTitle>
-                <CardDescription>Drag and drop files or click to browse</CardDescription>
+                <CardDescription>
+                  Drag and drop files or click to browse
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -323,8 +366,10 @@ export default function Upload() {
                           <SelectValue placeholder="Select subject" />
                         </SelectTrigger>
                         <SelectContent>
-                          {subjects.map(subject => (
-                            <SelectItem key={subject} value={subject}>{subject}</SelectItem>
+                          {subjects.map((subject) => (
+                            <SelectItem key={subject} value={subject}>
+                              {subject}
+                            </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -334,9 +379,9 @@ export default function Upload() {
                   {/* Drop Zone */}
                   <div
                     className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-                      dragActive 
-                        ? 'border-blue-500 bg-blue-50' 
-                        : 'border-gray-300 hover:border-gray-400'
+                      dragActive
+                        ? "border-blue-500 bg-blue-50"
+                        : "border-gray-300 hover:border-gray-400"
                     }`}
                     onDragEnter={handleDrag}
                     onDragLeave={handleDrag}
@@ -347,9 +392,7 @@ export default function Upload() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
                       Drop your files here
                     </h3>
-                    <p className="text-gray-600 mb-4">
-                      or click to browse
-                    </p>
+                    <p className="text-gray-600 mb-4">or click to browse</p>
                     <input
                       type="file"
                       multiple
@@ -372,7 +415,9 @@ export default function Upload() {
             </Card>
 
             {/* Recent Uploads */}
-            {uploadedFiles.filter(f => f.status === 'uploading' || f.status === 'processing').length > 0 && (
+            {uploadedFiles.filter(
+              (f) => f.status === "uploading" || f.status === "processing",
+            ).length > 0 && (
               <Card className="bg-white/70 backdrop-blur-sm border-white/20">
                 <CardHeader>
                   <CardTitle className="flex items-center">
@@ -383,22 +428,44 @@ export default function Upload() {
                 <CardContent>
                   <div className="space-y-4">
                     {uploadedFiles
-                      .filter(file => file.status === 'uploading' || file.status === 'processing')
+                      .filter(
+                        (file) =>
+                          file.status === "uploading" ||
+                          file.status === "processing",
+                      )
                       .map((file) => (
-                        <div key={file.id} className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
+                        <div
+                          key={file.id}
+                          className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg"
+                        >
                           <div className="p-2 bg-gray-100 rounded">
-                            {React.createElement(getFileIcon(file.type), { className: "w-5 h-5 text-gray-600" })}
+                            {React.createElement(getFileIcon(file.type), {
+                              className: "w-5 h-5 text-gray-600",
+                            })}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="font-medium text-gray-900 truncate">{file.name}</p>
+                            <p className="font-medium text-gray-900 truncate">
+                              {file.name}
+                            </p>
                             <div className="flex items-center space-x-4 mt-1">
-                              <span className="text-sm text-gray-500">{formatFileSize(file.size)}</span>
+                              <span className="text-sm text-gray-500">
+                                {formatFileSize(file.size)}
+                              </span>
                               <Badge variant="outline">{file.subject}</Badge>
-                              <Badge variant={file.status === 'uploading' ? 'default' : 'secondary'}>
+                              <Badge
+                                variant={
+                                  file.status === "uploading"
+                                    ? "default"
+                                    : "secondary"
+                                }
+                              >
                                 {file.status}
                               </Badge>
                             </div>
-                            <Progress value={file.progress} className="mt-2 h-2" />
+                            <Progress
+                              value={file.progress}
+                              className="mt-2 h-2"
+                            />
                           </div>
                           <Button
                             variant="ghost"
@@ -439,8 +506,10 @@ export default function Upload() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="">All Subjects</SelectItem>
-                      {subjects.map(subject => (
-                        <SelectItem key={subject} value={subject}>{subject}</SelectItem>
+                      {subjects.map((subject) => (
+                        <SelectItem key={subject} value={subject}>
+                          {subject}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -451,19 +520,28 @@ export default function Upload() {
             {/* File Library */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {filteredFiles
-                .filter(file => file.status === 'completed')
+                .filter((file) => file.status === "completed")
                 .map((file) => (
-                  <Card key={file.id} className="bg-white/70 backdrop-blur-sm border-white/20 hover:shadow-lg transition-shadow">
+                  <Card
+                    key={file.id}
+                    className="bg-white/70 backdrop-blur-sm border-white/20 hover:shadow-lg transition-shadow"
+                  >
                     <CardHeader>
                       <div className="flex items-start justify-between">
                         <div className="flex items-center space-x-3">
                           <div className="p-2 bg-green-100 rounded-lg">
-                            {React.createElement(getFileIcon(file.type), { className: "w-5 h-5 text-green-600" })}
+                            {React.createElement(getFileIcon(file.type), {
+                              className: "w-5 h-5 text-green-600",
+                            })}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h3 className="font-semibold text-gray-900 truncate">{file.name}</h3>
+                            <h3 className="font-semibold text-gray-900 truncate">
+                              {file.name}
+                            </h3>
                             <div className="flex items-center space-x-2 mt-1">
-                              <span className="text-sm text-gray-500">{formatFileSize(file.size)}</span>
+                              <span className="text-sm text-gray-500">
+                                {formatFileSize(file.size)}
+                              </span>
                               <Badge variant="outline">{file.subject}</Badge>
                             </div>
                           </div>
@@ -475,8 +553,8 @@ export default function Upload() {
                           <Button variant="ghost" size="icon">
                             <Download className="w-4 h-4" />
                           </Button>
-                          <Button 
-                            variant="ghost" 
+                          <Button
+                            variant="ghost"
                             size="icon"
                             onClick={() => deleteFile(file.id)}
                           >
@@ -490,26 +568,42 @@ export default function Upload() {
                         <div className="space-y-3">
                           <div className="flex items-center space-x-2">
                             <Brain className="w-4 h-4 text-blue-500" />
-                            <span className="text-sm font-medium text-gray-900">AI Analysis</span>
+                            <span className="text-sm font-medium text-gray-900">
+                              AI Analysis
+                            </span>
                           </div>
-                          <p className="text-sm text-gray-600">{file.aiAnalysis.summary}</p>
-                          
+                          <p className="text-sm text-gray-600">
+                            {file.aiAnalysis.summary}
+                          </p>
+
                           <div className="flex flex-wrap gap-2">
                             {file.aiAnalysis.keyTopics.map((topic, index) => (
-                              <Badge key={index} variant="secondary" className="text-xs">
+                              <Badge
+                                key={index}
+                                variant="secondary"
+                                className="text-xs"
+                              >
                                 {topic}
                               </Badge>
                             ))}
                           </div>
-                          
+
                           <div className="flex items-center justify-between text-xs text-gray-500">
-                            <span>Difficulty: {file.aiAnalysis.difficulty}</span>
-                            <span>Study time: {file.aiAnalysis.estimatedStudyTime}</span>
+                            <span>
+                              Difficulty: {file.aiAnalysis.difficulty}
+                            </span>
+                            <span>
+                              Study time: {file.aiAnalysis.estimatedStudyTime}
+                            </span>
                           </div>
-                          
+
                           <div className="flex flex-wrap gap-1 mt-2">
                             {file.tags.map((tag, index) => (
-                              <Badge key={index} variant="outline" className="text-xs">
+                              <Badge
+                                key={index}
+                                variant="outline"
+                                className="text-xs"
+                              >
                                 <Tag className="w-3 h-3 mr-1" />
                                 {tag}
                               </Badge>
@@ -526,12 +620,13 @@ export default function Upload() {
               <Card className="bg-white/70 backdrop-blur-sm border-white/20">
                 <CardContent className="pt-8 pb-8 text-center">
                   <FolderOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">No files found</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    No files found
+                  </h3>
                   <p className="text-gray-600">
-                    {searchTerm || selectedSubject 
+                    {searchTerm || selectedSubject
                       ? "Try adjusting your search or filter criteria"
-                      : "Upload your first study materials to get started"
-                    }
+                      : "Upload your first study materials to get started"}
                   </p>
                 </CardContent>
               </Card>

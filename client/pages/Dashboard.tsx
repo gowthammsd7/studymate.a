@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -26,7 +32,7 @@ import {
   Play,
   CheckCircle2,
   Star,
-  LogOut
+  LogOut,
 } from "lucide-react";
 
 export default function Dashboard() {
@@ -38,7 +44,7 @@ export default function Dashboard() {
       description: "Get personalized study recommendations",
       href: "/ai-advisor",
       color: "from-blue-500 to-cyan-500",
-      bgColor: "bg-blue-50"
+      bgColor: "bg-blue-50",
     },
     {
       icon: Upload,
@@ -46,7 +52,7 @@ export default function Dashboard() {
       description: "Add new study documents",
       href: "/upload",
       color: "from-green-500 to-emerald-500",
-      bgColor: "bg-green-50"
+      bgColor: "bg-green-50",
     },
     {
       icon: BookOpen,
@@ -54,7 +60,7 @@ export default function Dashboard() {
       description: "Review your flashcard sets",
       href: "/flashcards",
       color: "from-orange-500 to-amber-500",
-      bgColor: "bg-orange-50"
+      bgColor: "bg-orange-50",
     },
     {
       icon: Users,
@@ -62,8 +68,8 @@ export default function Dashboard() {
       description: "Join collaborative sessions",
       href: "/study-groups",
       color: "from-purple-500 to-violet-500",
-      bgColor: "bg-purple-50"
-    }
+      bgColor: "bg-purple-50",
+    },
   ];
 
   const recentActivity = [
@@ -72,43 +78,63 @@ export default function Dashboard() {
       subject: "Advanced Calculus",
       time: "2 hours ago",
       icon: CheckCircle2,
-      color: "text-green-500"
+      color: "text-green-500",
     },
     {
       action: "Uploaded study materials",
       subject: "Physics Notes",
       time: "5 hours ago",
       icon: Upload,
-      color: "text-blue-500"
+      color: "text-blue-500",
     },
     {
       action: "Joined study group",
       subject: "Chemistry Study Group",
       time: "1 day ago",
       icon: Users,
-      color: "text-purple-500"
+      color: "text-purple-500",
     },
     {
       action: "AI recommendation",
       subject: "Math practice suggested",
       time: "2 days ago",
       icon: Brain,
-      color: "text-cyan-500"
-    }
+      color: "text-cyan-500",
+    },
   ];
 
   const studyStats = [
-    { label: "Study Streak", value: "7 days", icon: Trophy, color: "text-yellow-500" },
-    { label: "Hours This Week", value: "12.5h", icon: Clock, color: "text-blue-500" },
-    { label: "Completed Sets", value: "24", icon: CheckCircle2, color: "text-green-500" },
-    { label: "Success Rate", value: "87%", icon: Target, color: "text-purple-500" }
+    {
+      label: "Study Streak",
+      value: "7 days",
+      icon: Trophy,
+      color: "text-yellow-500",
+    },
+    {
+      label: "Hours This Week",
+      value: "12.5h",
+      icon: Clock,
+      color: "text-blue-500",
+    },
+    {
+      label: "Completed Sets",
+      value: "24",
+      icon: CheckCircle2,
+      color: "text-green-500",
+    },
+    {
+      label: "Success Rate",
+      value: "87%",
+      icon: Target,
+      color: "text-purple-500",
+    },
   ];
 
   const upcomingTasks = [
     { task: "Review Calculus Chapter 5", due: "Today", priority: "high" },
     { task: "Physics Problem Set #3", due: "Tomorrow", priority: "medium" },
     { task: "History Essay Draft", due: "In 3 days", priority: "low" },
-    { task: "Chemistry Lab Report", due: "Next week", priority: "medium" }
+    { task: "Chemistry Lab Report", due: "Next week", priority: "medium" },
   ];
 
   return (
@@ -180,13 +206,19 @@ export default function Dashboard() {
 
         {/* Quick Actions */}
         <section className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            Quick Actions
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {quickActions.map((action, index) => (
               <Link key={index} to={action.href} className="group">
-                <Card className={`h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${action.bgColor} border-white/50`}>
+                <Card
+                  className={`h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${action.bgColor} border-white/50`}
+                >
                   <CardContent className="p-6">
-                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${action.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <div
+                      className={`w-12 h-12 rounded-lg bg-gradient-to-r ${action.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+                    >
                       <action.icon className="w-6 h-6 text-white" />
                     </div>
                     <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
@@ -213,7 +245,9 @@ export default function Dashboard() {
                   <TrendingUp className="w-5 h-5 mr-2 text-green-500" />
                   Study Progress
                 </CardTitle>
-                <CardDescription>Your learning journey this week</CardDescription>
+                <CardDescription>
+                  Your learning journey this week
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -261,16 +295,25 @@ export default function Dashboard() {
               <CardContent>
                 <div className="space-y-4">
                   {recentActivity.map((activity, index) => (
-                    <div key={index} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/50 transition-colors">
+                    <div
+                      key={index}
+                      className="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/50 transition-colors"
+                    >
                       <div className={`p-2 rounded-full bg-gray-100`}>
-                        <activity.icon className={`w-4 h-4 ${activity.color}`} />
+                        <activity.icon
+                          className={`w-4 h-4 ${activity.color}`}
+                        />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900">
                           {activity.action}
                         </p>
-                        <p className="text-sm text-gray-600">{activity.subject}</p>
-                        <p className="text-xs text-gray-400 mt-1">{activity.time}</p>
+                        <p className="text-sm text-gray-600">
+                          {activity.subject}
+                        </p>
+                        <p className="text-xs text-gray-400 mt-1">
+                          {activity.time}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -298,12 +341,19 @@ export default function Dashboard() {
               <CardContent>
                 <div className="space-y-4">
                   {studyStats.map((stat, index) => (
-                    <div key={index} className="flex items-center justify-between">
+                    <div
+                      key={index}
+                      className="flex items-center justify-between"
+                    >
                       <div className="flex items-center space-x-3">
                         <stat.icon className={`w-5 h-5 ${stat.color}`} />
-                        <span className="text-sm text-gray-600">{stat.label}</span>
+                        <span className="text-sm text-gray-600">
+                          {stat.label}
+                        </span>
                       </div>
-                      <span className="font-semibold text-gray-900">{stat.value}</span>
+                      <span className="font-semibold text-gray-900">
+                        {stat.value}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -321,15 +371,24 @@ export default function Dashboard() {
               <CardContent>
                 <div className="space-y-3">
                   {upcomingTasks.map((task, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 rounded-lg hover:bg-white/50 transition-colors">
+                    <div
+                      key={index}
+                      className="flex items-center justify-between p-3 rounded-lg hover:bg-white/50 transition-colors"
+                    >
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 truncate">
                           {task.task}
                         </p>
                         <p className="text-xs text-gray-500">{task.due}</p>
                       </div>
-                      <Badge 
-                        variant={task.priority === 'high' ? 'destructive' : task.priority === 'medium' ? 'default' : 'secondary'}
+                      <Badge
+                        variant={
+                          task.priority === "high"
+                            ? "destructive"
+                            : task.priority === "medium"
+                              ? "default"
+                              : "secondary"
+                        }
                         className="ml-2"
                       >
                         {task.priority}
@@ -354,8 +413,8 @@ export default function Dashboard() {
                   <div>
                     <h3 className="font-semibold mb-2">AI Recommendation</h3>
                     <p className="text-blue-100 text-sm mb-4">
-                      Based on your recent progress, I suggest focusing on calculus derivatives practice. 
-                      You're 85% there!
+                      Based on your recent progress, I suggest focusing on
+                      calculus derivatives practice. You're 85% there!
                     </p>
                     <Link to="/ai-advisor">
                       <Button variant="secondary" size="sm">
