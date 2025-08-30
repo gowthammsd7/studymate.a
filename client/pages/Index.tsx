@@ -131,9 +131,9 @@ export default function Index() {
               instant homework help, and intelligent study tools designed to maximize your academic success.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/signup">
+              <Link to={isAuthenticated ? "/dashboard" : "/signup"}>
                 <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-6">
-                  Start Learning
+                  {isAuthenticated ? "Go to Dashboard" : "Start Learning"}
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
